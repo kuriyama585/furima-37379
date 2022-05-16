@@ -1,24 +1,66 @@
-# README
+## groups_usersTable
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column          | Type        | Options                         |
+| ----------------|-------------| --------------------------------|
+| user_id         | string      | null: false                     |
+| nickname        | string      | null: false                     |
+| email           | string      | null: false                     |
+| password        | string      | null: false                     |
+| first_name      | string      | null: false                     |
+| last_name       | string      | null: false                     |
+| first_name_kana | string      | null: false                     |
+| last_name_kana  | string      | null: false                     |
+| birthday        | date        | null: false                     |
 
-Things you may want to cover:
+### Association
+- belongs_to :itemsTable
+- belongs_to :purchasesTable
 
-* Ruby version
+## groups_itemsTable
 
-* System dependencies
+| Column          | Type        | Options                         |
+| ----------------|-------------| --------------------------------|
+| user_id         | references  | null: false, foreign_key: true  |
+| item_id         | string      | null: false                     |
+| item_name       | string      | null: false                     |
+| item_text       | text        | null: false                     |
+| item_img        | string      | null: false                     |
+| category        | string      | null: false                     |
+| situation       | string      | null: false                     |
+| delivery_charge | string      | null: false                     |
+| prefectures     | integer     | null: false                     |
+| days            | date        | null: false                     |
+| price           | integer     | null: false                     |
 
-* Configuration
+### Association
+- belongs_to :userTable
+- belongs_to :purchasesTable
 
-* Database creation
+## groups_purchasesTable
 
-* Database initialization
+| Column          | Type        | Options                         |
+| ----------------|-------------| --------------------------------|
+| user_id         | references  | null: false, foreign_key: true  |
+| item_id         | references  | null: false, foreign_key: true  |
+| purchases_id    | string      | null: false                     |
 
-* How to run the test suite
+### Association
+- belongs_to :userTable
+- belongs_to :itemsTable
+- belongs_to :addressesTable
 
-* Services (job queues, cache servers, search engines, etc.)
+## groups_addressesTable
 
-* Deployment instructions
+| Column          | Type        | Options                         |
+| ----------------|-------------| --------------------------------|
+| purchases_id    | references  | null: false, foreign_key: true  |
+| address_id      | string      | null: false                     |
+| postal_code     | string      | null: false                     |
+| prefectures     | string      | null: false                     |
+| municipality    | string      | null: false                     |
+| address         | string      | null: false                     |
+| building_name   | string      | null: false                     |
+| telephone_number| string      | null: false                     |
 
-* ...
+### Association
+- belongs_to :purchasesTable
