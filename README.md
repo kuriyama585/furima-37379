@@ -1,4 +1,4 @@
-## groups_usersTable
+## usersTable
 
 | Column            | Type        | Options                         |
 | ------------------|-------------| --------------------------------|
@@ -15,49 +15,47 @@
 has_many :items
 has_many :purchases
 
-## groups_itemsTable
+## itemsTable
 
 | Column            | Type        | Options                         |
 | ------------------|-------------| --------------------------------|
-| user_id           | references  | null: false, foreign_key: true  |
+| user              | references  | null: false, foreign_key: true  |
 | item_name         | string      | null: false                     |
 | item_text         | text        | null: false                     |
-| item_img          | string      | null: false                     |
-| category          | string      | null: false                     |
-| situation         | string      | null: false                     |
-| delivery_charge   | string      | null: false                     |
-| prefectures       | integer     | null: false                     |
-| days              | date        | null: false                     |
+| category_id       | integer     | null: false                     |
+| situation_id      | integer     | null: false                     |
+| delivery_charge_id| integer     | null: false                     |
+| prefectures_id    | integer     | null: false                     |
+| days_id           | integer     | null: false                     |
 | price             | integer     | null: false                     |
 
 ### Association
-- belongs_to :userTable
-- belongs_to :purchasesTable
+belongs_to :user
+has_one :purchase
 
-## groups_purchasesTable
+## purchasesTable
 
 | Column            | Type        | Options                         |
 | ------------------|-------------| --------------------------------|
-| user_id           | references  | null: false, foreign_key: true  |
-| item_id           | references  | null: false, foreign_key: true  |
-| purchases_id      | string      | null: false                     |
+| user              | references  | null: false, foreign_key: true  |
+| item              | references  | null: false, foreign_key: true  |
 
 ### Association
-belongs_to :userTable
-belongs_to :itemsTable
-belongs_to :addressesTable
+belongs_to :user
+belongs_to :item
+has_one :address
 
-## groups_addressesTable
+## addressesTable
 
 | Column            | Type        | Options                         |
 | ------------------|-------------| --------------------------------|
-| purchases_id      | references  | null: false, foreign_key: true  |
+| purchase          | references  | null: false, foreign_key: true  |
 | postal_code       | string      | null: false                     |
-| prefectures       | Integer     | null: false                     |
+| prefectures_id    | Integer     | null: false                     |
 | municipality      | string      | null: false                     |
 | address           | string      | null: false                     |
 | building_name     | string      |                                 |
 | telephone_number  | string      | null: false                     |
 
 ### Association
-belongs_to :purchasesTable
+belongs_to :purchase
