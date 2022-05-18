@@ -26,7 +26,7 @@ has_many :purchases
 | situation_id      | integer     | null: false                     |
 | delivery_charge_id| integer     | null: false                     |
 | prefectures_id    | integer     | null: false                     |
-| days_id           | integer     | null: false                     |
+| delivery_date_id  | integer     | null: false                     |
 | price             | integer     | null: false                     |
 
 ### Association
@@ -51,7 +51,7 @@ has_one :address
 | ------------------|-------------| --------------------------------|
 | purchase          | references  | null: false, foreign_key: true  |
 | postal_code       | string      | null: false                     |
-| prefectures_id    | Integer     | null: false                     |
+| prefectures_id    | integer     | null: false                     |
 | municipality      | string      | null: false                     |
 | address           | string      | null: false                     |
 | building_name     | string      |                                 |
