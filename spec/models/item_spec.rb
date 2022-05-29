@@ -62,28 +62,28 @@ describe '商品出品機能' do
         @item.valid?
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
-      it "category_idが1では登録できない" do
-        @item.category_id = '1'
+      it "category_idが0では登録できない" do
+        @item.category_id = '0'
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
-      it "situation_idが1では登録できない" do
-        @item.situation_id = '1'
+      it "situation_idが0では登録できない" do
+        @item.situation_id = '0'
         @item.valid?
         expect(@item.errors.full_messages).to include("Situation can't be blank")
       end
-      it "delivery_charge_idが1では登録できない" do
-        @item.delivery_charge_id = '1'
+      it "delivery_charge_idが0では登録できない" do
+        @item.delivery_charge_id = '0'
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery charge can't be blank")
       end
-      it "prefecture_idが1では登録できない" do
-        @item.prefecture_id = '1'
+      it "prefecture_idが0では登録できない" do
+        @item.prefecture_id = '0'
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
-      it "delivery_date_idが1では登録できない" do
-        @item.delivery_date_id = '1'
+      it "delivery_date_idが0では登録できない" do
+        @item.delivery_date_id = '0'
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery date can't be blank")
       end

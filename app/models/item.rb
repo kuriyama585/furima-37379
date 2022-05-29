@@ -10,11 +10,11 @@ class Item < ApplicationRecord
   belongs_to :user
 
   #ジャンルの選択が「--」(---はid１のこと)の時は保存できないようにする 
-  validates :category_id, numericality: { other_than: 1 , message: "can't be blank"}  
-  validates :situation_id, numericality: { other_than: 1 , message: "can't be blank"}  
-  validates :delivery_charge_id, numericality: { other_than: 1 , message: "can't be blank"}  
-  validates :prefecture_id, numericality: { other_than: 1 , message: "can't be blank"}  
-  validates :delivery_date_id, numericality: { other_than: 1 , message: "can't be blank"}  
+  validates :category_id, numericality: { other_than: 0 , message: "can't be blank"}  
+  validates :situation_id, numericality: { other_than: 0 , message: "can't be blank"}  
+  validates :delivery_charge_id, numericality: { other_than: 0 , message: "can't be blank"}  
+  validates :prefecture_id, numericality: { other_than: 0 , message: "can't be blank"}  
+  validates :delivery_date_id, numericality: { other_than: 0 , message: "can't be blank"}  
   # アクティブハッシュはカラムに対してバリデーションをかけないといけない。
   # 今回のプルダウン１がーーーになるが入力の時は１を選ばれないようにする。
 
