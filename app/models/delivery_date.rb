@@ -10,3 +10,4 @@ class DeliveryDate < ActiveHash::Base
   has_many :items
 
   end
+  

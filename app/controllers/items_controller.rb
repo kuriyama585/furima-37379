@@ -2,6 +2,10 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!,only: :new
 
 def index
+  @item = Item.includes(:user).order("created_at DESC")
+  # itemテーブルから情報を持ってきています。
+  # includes(:user)           itemのデータベースとuser情報も一緒に持っていきます。
+  # order("created_at DESC")  投稿を新しいものから順番に表示する。
 end
 
 def new
