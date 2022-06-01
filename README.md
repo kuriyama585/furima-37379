@@ -59,3 +59,11 @@ has_one :address
 
 ### Association
 belongs_to :purchase
+
+ゴール：投稿が無い時ダミーデータ
+
+行うために、条件分岐
+１、投稿がゼロ
+itemsテーブルのデータがない時
+@item = Item.includes(:user).order("created_at DESC") itemsテーブルの情報取ってきている
+@item = []、@itemがpuresenceじゃないとき
