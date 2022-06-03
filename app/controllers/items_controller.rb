@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :set_item,only: [:show, :edit, :update]
-  before_action :authenticate_user!,only: [:new,:edit]
-  # before_action :authenticate_user!,only: [:new ,:edit ,:destroy]
+  before_action :set_item,only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!,only: [:new,:edit, :destroy]
 
 def index
   @item = Item.includes(:user).order("created_at DESC")
@@ -28,6 +27,8 @@ end
 
 def edit
   unless  current_user.id == @item.user_id
+  # 投稿者以外が遷移した時
+  # unlessはもしもの逆の意味
     redirect_to action: :index
   end
   # ↑ログインかつ投稿者のみ遷移可能の条件
@@ -40,6 +41,16 @@ def update
   else
     render :edit
   end
+end
+
+def destroy 
+  if  current_user.id == @item.user_id
+    # もし投稿したページに投稿者が遷移した時
+    @item.destroy
+    # trueの時は削除実行その後下記の式に
+    # falsuの時は削除を抜けて下記の式に
+  end
+  redirect_to root_path
 end
 
 private
