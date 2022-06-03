@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!,only: :new
+  before_action :set_item,only: [:show, :edit, :update]
+  before_action :authenticate_user!,only: [:new,:edit]
+  # before_action :authenticate_user!,only: [:new ,:edit ,:destroy]
 
 def index
   @item = Item.includes(:user).order("created_at DESC")
@@ -22,12 +24,31 @@ def create
 end
 
 def show
-  @item = Item.find(params[:id])
+end
+
+def edit
+  unless  current_user.id == @item.user_id
+    redirect_to action: :index
+  end
+  # ↑ログインかつ投稿者のみ遷移可能の条件
+  # 課題はbefore_actionで条件をつけれるようにする
+end
+
+def update
+  if @item.update(item_params)
+    redirect_to item_path
+  else
+    render :edit
+  end
 end
 
 private
   def item_params
     params.require(:item).permit(:item_name, :item_text, :category_id,:situation_id,:delivery_charge_id,:prefecture_id,:delivery_date_id,:price,:image).merge(user_id: current_user.id)
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 
 end
