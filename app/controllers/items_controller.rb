@@ -26,7 +26,8 @@ def show
 end
 
 def edit
-  unless  current_user.id == @item.user_id
+  if  current_user.id =! @item.user_id || @item.order
+  # unless  current_user.id == @item.user_id
   # 投稿者以外が遷移した時
   # unlessはもしもの逆の意味
     redirect_to action: :index

@@ -13,7 +13,7 @@
 
 ### Association
 has_many :items
-has_many :purchases
+has_many :order
 
 ## itemsTable
 
@@ -31,9 +31,9 @@ has_many :purchases
 
 ### Association
 belongs_to :user
-has_one :purchase
+has_one :order
 
-## purchasesTable
+## orderTable
 
 | Column            | Type        | Options                         |
 | ------------------|-------------| --------------------------------|
@@ -49,16 +49,16 @@ has_one :address
 
 | Column            | Type        | Options                         |
 | ------------------|-------------| --------------------------------|
-| purchase          | references  | null: false, foreign_key: true  |
+| order             | references  | null: false, foreign_key: true  |
 | postal_code       | string      | null: false                     |
-| prefecture_id    | integer     | null: false                     |
+| prefecture_id     | integer     | null: false                     |
 | municipality      | string      | null: false                     |
 | address           | string      | null: false                     |
 | building_name     | string      |                                 |
 | telephone_number  | string      | null: false                     |
 
 ### Association
-belongs_to :purchase
+belongs_to :order
 
 ゴール：投稿が無い時ダミーデータ
 
@@ -66,4 +66,4 @@ belongs_to :purchase
 １、投稿がゼロ
 itemsテーブルのデータがない時
 @item = Item.includes(:user).order("created_at DESC") itemsテーブルの情報取ってきている
-@item = []、@itemがpuresenceじゃないとき
+@item = []、@itemがorderじゃないとき
