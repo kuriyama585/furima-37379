@@ -32,7 +32,7 @@ class OrderAddress
     order = Order.create(user_id: user_id ,item_id: item_id)
     # 住所を保存する
     # order_idには、変数orderのidと指定する
-    Address.create(order: orde_id, postal_code: postal_code, prefecture_id: prefecture_id, municipality: municipality, address: address, building_name: building_name, telephone_number: telephone_number)
+    Address.create(order_id: order.id, postal_code: postal_code, prefecture_id: prefecture_id, municipality: municipality, address: address, building_name: building_name, telephone_number: telephone_number)
       # アドレス情報を作成する問いにカラムに対して値を書くことで(カラム:値,)(キーとバリューの関係(データ保存)) OrderAddress_idに紐づくデータを作成保存できる。
   end
   # ↑なぜseveをmodelで宣言されているかsaveを使うことで記述が簡単になる。二つのテーブルに保存する処理だから(form object)を書いている
