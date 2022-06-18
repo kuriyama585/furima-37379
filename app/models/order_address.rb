@@ -5,21 +5,22 @@ class OrderAddress
   # バリデーションをかけない(例：任意で入力するデータ)のようなものがあったとしても上記には記入は必要(データを扱うには記述必須)
   # controller→model (MVCの流れで考えてみるとわかりやすい）
 
-  #  order modelでのバリデーションを追加してます
-  validates :token, presence: true
-
   validates :prefecture_id, numericality: { other_than: 0 , message: "can't be blank"}  
   # 都道府県のプルダウン０番だとバリデーションをかけます
 
-  validates :user_id, presence: true
-  validates :item_id, presence: true
-  # ↓address modelでのバリデーションを追加してます。
-  validates :postal_code, presence: true
-  validates :prefecture_id, presence: true
-  validates :municipality, presence: true
-  validates :address, presence: true
-  validates :telephone_number, presence: true
-  # 情報が空だったらバリデーションをかける
+  with_options presence: true do
+    #  order modelでのバリデーションを追加してます
+    validates :token
+    validates :user_id
+    validates :item_id
+    # ↓address modelでのバリデーションを追加してます。
+    validates :postal_code
+    validates :prefecture_id
+    validates :municipality
+    validates :address
+    validates :telephone_number
+    # 情報が空だったらバリデーションをかける
+  end
 
   validates :postal_code,format: {with: /\A\d{3}[-]\d{4}\z/}
   # 郵便番号、３桁ー４桁のバリデーションを追加しています。

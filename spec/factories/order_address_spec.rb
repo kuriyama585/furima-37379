@@ -12,9 +12,8 @@ FactoryBot.define do
     # □トークン→→なんでもいい(カード番号、その他不要の考え)
     # □user_id→数字
     # □item_id→数字
+    # item_id/user_id order_address_spec.rbのbefore内でダミーデータを生成しているため。
     token {Faker::Number.number(digits: 10)}
-    user_id {Faker::Lorem.word}
-    item_id {Faker::Lorem.word}
     prefecture_id {Faker::Number.between(from: 1, to: 47)}
     municipality{Faker::Address.street_address}
     address {Faker::Address.city}

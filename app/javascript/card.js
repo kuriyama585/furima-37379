@@ -1,5 +1,7 @@
 const pay = () => {
-  Payjp.setPublicKey("pk_test_3c10230a4cfb9771917de8e0"); // PAY.JPテスト公開鍵
+  Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY); // PAY.JPテスト公開鍵
+  console.log(process.env.PAYJP_PUBLIC_KEY);
+  // ↑環境変数を読み込むための記述(うまく読み込まれているかを確認する記述する)
   const submit = document.getElementById("button");
   submit.addEventListener("click", (e) => {
     e.preventDefault();

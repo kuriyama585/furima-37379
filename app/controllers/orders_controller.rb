@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :set_order_address,only: [:index, :create]
   before_action :authenticate_user!,only: :index
 
   # 今回orderテーブルとaddressesテーブルを一緒に保存する。
@@ -50,7 +51,7 @@ class OrdersController < ApplicationController
   # mergeする時は子供の時に親の情報(userとitem)をmergeすることが必要である。(indexの表示ではなく保存のために必要)
 
   def pay_item
-    Payjp.api_key = "sk_test_b91ccdb051f9feb13fab44d4"  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
     Payjp::Charge.create(
       amount: @item[:price],  # 商品の値段
       card: order_params[:token],    # カードトークン
@@ -61,4 +62,7 @@ class OrdersController < ApplicationController
   #   params.require(:order).permit(:postal_code, :prefecture_id, :municipality, :address, :building_name, :telephone_number).merge(user_id: current_user.id)
   # end
   # フォームオブジェクトを追加するために上記の内容を削除
+  def set_order_address
+    @item = Item.find(params[:item_id])
+  end
 end
