@@ -7,7 +7,6 @@ class OrdersController < ApplicationController
   # formオブジェクトが今回の処理の名称になる→同時保存
   def index
     @order = OrderAddress.new
-    @item = Item.find(params[:item_id])
     # viewページに表示すために必要
     if  current_user.id == @item.user_id || @item.order
       # もし投稿したページに投稿者が遷移した時
@@ -26,7 +25,6 @@ class OrdersController < ApplicationController
 
   def create
     @order_address = OrderAddress.new(order_params)
-    @item = Item.find(params[:item_id])
     # binding.pry
     # ※↑後程発生
     # もしも購入ボタン押下→データ保存できない時表示が必要なため記述が必要である。

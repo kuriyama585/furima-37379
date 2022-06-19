@@ -1,7 +1,6 @@
 const pay = () => {
   Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY); // PAY.JPテスト公開鍵
-  console.log(process.env.PAYJP_PUBLIC_KEY);
-  // ↑環境変数を読み込むための記述(うまく読み込まれているかを確認する記述する)
+  
   const submit = document.getElementById("button");
   submit.addEventListener("click", (e) => {
     e.preventDefault();
@@ -18,9 +17,7 @@ const pay = () => {
     // 生成したFormDataオブジェクトから、クレジットカードに関する情報を取得し、
     // 変数cardに代入するオブジェクトとして定義しています。
     // "order[number]"などは、以下のように各フォームのname属性の値のこと
-    console.log(card)
-    // ↑入力したカードの情報を読み込みます
-
+    
     Payjp.createToken(card, (status, response) => {
       if (status == 200) {
         const token = response.id;
