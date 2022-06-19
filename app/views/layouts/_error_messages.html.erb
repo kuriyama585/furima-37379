@@ -1,0 +1,12 @@
+<% if model.errors.any? %>
+<%# 条件分岐で、エラーが発生している場合のみに、2行目以降の記述が読み込まれる %>
+ <div class="error-alert">
+   <ul>
+   <%# model.errors.full_messagesはこれまでエラーメッセージを出力するために使用してきた記述 %>
+     <% model.errors.full_messages.each do |message| %>
+      <%# eachメソッドを用いて一つずつブラウザ上で表示 %>
+       <li class='error-message'><%= message %></li>
+     <% end %>
+   </ul>
+ </div>
+<% end %>

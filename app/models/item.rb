@@ -8,6 +8,7 @@ class Item < ApplicationRecord
   belongs_to :delivery_date
 
   belongs_to :user
+  has_one :order
 
   #ジャンルの選択が「--」(---はid１のこと)の時は保存できないようにする 
   validates :category_id, numericality: { other_than: 0 , message: "can't be blank"}  
