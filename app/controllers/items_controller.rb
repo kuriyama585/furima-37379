@@ -26,7 +26,9 @@ def show
 end
 
 def edit
-  if  current_user.id =! @item.user_id || @item.order
+  if  current_user.id =! @item.user_id || @item.order.nil?
+    # =!を比較演算子を用いて@item.orderがnilで返される式が必要である、
+    # もしくはの跡を変えることが大切。
   # unless  current_user.id == @item.user_id
   # 投稿者以外が遷移した時
   # unlessはもしもの逆の意味

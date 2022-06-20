@@ -34,7 +34,7 @@
     <% end %>
 
     <div class="item-explain-box">
-      <span><%= @item.item_name %></span>
+      <span><%= @item.item_text %></span>
     </div>
     <table class="detail-table">
       <tbody>
@@ -60,7 +60,7 @@
         </tr>
         <tr>
           <th class="detail-item">発送日の目安</th>
-          <td class="detail-value"><%= @item.price %></td>
+          <td class="detail-value"><%= @item.delivery_date.name %></td>
         </tr>
       </tbody>
     </table>
