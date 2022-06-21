@@ -26,11 +26,13 @@ def show
 end
 
 def edit
-  if  current_user.id =! @item.user_id || @item.order.nil?
-    # =!を比較演算子を用いて@item.orderがnilで返される式が必要である、
+  if  current_user.id != @item.user_id || @item.order
+    # 比較演算子を用いて@item.orderがnilで返される式が必要である、
     # もしくはの跡を変えることが大切。
   # unless  current_user.id == @item.user_id
-  # 投稿者以外が遷移した時
+  # 投稿者以外が遷移した時→遷移できない
+  # 投稿者者は出品中が購入された内容は遷移ができない
+  # 【済】ログインしていない人は遷移できない→ before_actionにて実装
   # unlessはもしもの逆の意味
     redirect_to action: :index
   end
